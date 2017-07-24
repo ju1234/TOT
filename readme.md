@@ -1,1 +1,1 @@
-# the development environment for react
+# todo list appliction
