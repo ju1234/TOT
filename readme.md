@@ -1,1 +1,1 @@
-# todo list appliction
+# todo list application
