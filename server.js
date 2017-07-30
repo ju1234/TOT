@@ -6,20 +6,28 @@
 const path = require('path'),
   express = require('express'),
   webpack = require('webpack'),
-  fs = require('fs');
+  fs = require('fs'),
+  bodyParser = require('body-parser');
 
-const routes = require('./routes');
+
+const routes = require('./routes'),
+  service = require('./service/index');
 
 app = express();
 
 
+
+app.use(bodyParser.json());
 // development or production
 const isDeveloping = process.env.NODE_ENV === 'development';
 // listen port
 const port = isDeveloping ? 7777 : 9999;
 
+// 静态文件目录
 app.use(express.static(path.resolve(__dirname, './public')));
 
+// 接口挂载
+service(app);
 /**
  * 开发模式： 使用webpack hot middleware
  * 生产模式： 直接发送打包好的文件

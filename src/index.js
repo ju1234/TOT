@@ -7,14 +7,8 @@ import React,{Component} from 'react';
 import {render} from 'react-dom';
 
 
-class Demo extends Component{
-  render(){
-    return (
-      <h1>hello world</h1>
-    )
-  }
-}
+import App from './components/Wrapper';
 
 
 
-render(<Demo/>,document.getElementById('root'));
+render(<App/>,document.getElementById('root'));

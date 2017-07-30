@@ -6,4 +6,4 @@
 
 
 
-module.exports = ['/'];
+module.exports = ['/','/list','/edit','/done','/new'];
