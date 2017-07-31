@@ -5,7 +5,6 @@
  */
 const path = require('path'),
   express = require('express'),
-  webpack = require('webpack'),
   fs = require('fs'),
   bodyParser = require('body-parser');
 
@@ -15,7 +14,10 @@ const routes = require('./routes'),
 
 app = express();
 
-
+app.use(function (req,res,next) {
+  console.log(req.url)
+  next()
+});
 
 app.use(bodyParser.json());
 // development or production
@@ -33,6 +35,7 @@ service(app);
  * 生产模式： 直接发送打包好的文件
  */
 if (isDeveloping) {
+  const webpack = require('webpack');
   let config = require('./webpack.config/webpack.config.dev');
   let compiler = webpack(config);
   let devMiddleWare = require('webpack-dev-middleware')(compiler, {
@@ -81,3 +84,5 @@ app.listen(port, function (err) {
     console.log('err', err)
   }
 });
+
+

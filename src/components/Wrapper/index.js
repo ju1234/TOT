@@ -29,19 +29,19 @@ export default class App extends Component {
   // 设置active key
   setActiveKey = () => {
     const pathname = location.pathname;
-    if (pathname == '/' || pathname == '/list') {
+    if (pathname == '/todoList' || pathname == '/list') {
       this.setState({
         activeKey: '1'
       });
-    } else if (pathname == '/new') {
+    } else if (pathname == '/todoList/new') {
       this.setState({
         activeKey: '2'
       });
-    } else if (pathname == '/edit') {
+    } else if (pathname == '/todoList/edit') {
       this.setState({
         activeKey: '4'
       });
-    } else if (pathname == '/done') {
+    } else if (pathname == '/todoList/done') {
       this.setState({
         activeKey: '3'
       });
@@ -54,10 +54,10 @@ export default class App extends Component {
       activeKey: tabKey.toString()
     });
 
-    if (tabKey == 1) history.pushState({}, '', '/');
-    else if (tabKey == 2) history.pushState({}, '', '/new');
-    else if (tabKey == 3) history.pushState({}, '', '/done');
-    else if (tabKey == 4) history.pushState({}, '', '/edit')
+    if (tabKey == 1) history.pushState({}, '', '/todoList/');
+    else if (tabKey == 2) history.pushState({}, '', '/todoList/new');
+    else if (tabKey == 3) history.pushState({}, '', '/todoList/done');
+    else if (tabKey == 4) history.pushState({}, '', '/todoList/edit')
   };
 
 

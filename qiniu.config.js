@@ -11,7 +11,6 @@ var fs = require('fs');
 var path = require('path');
 
 
-console.log('qiniu upload begin');
 
 qiniu.conf.ACCESS_KEY = '9USckCAfM4nRrkfRW3WHwCImMD98G4L_HcXd9Rc6';
 qiniu.conf.SECRET_KEY = '4weslNZiGfDmAmyYCEjxMzAyql75QcEqsmPCx_WY';
@@ -57,17 +56,16 @@ function mapFilesToQiniu(dirPath = path.join(__dirname, 'public')) {
           mapFilesToQiniu(path.join(dirPath, fileName))
         } else if (extnameContainer.includes(path.extname(fileName))) {
           const filePath = path.join(dirPath + '/' + fileName);
-          const key = fileName;
-          console.log(fileName)
+          const key = filePath.split('todo-list/public/')[1];
 
-          qiniuUpload(fileName,filePath)
+          // console.log(filePath)
+          qiniuUpload(key,filePath)
             .then((res) => {
               console.log(res)
             })
             .catch( err => {
             console.log('13123123231132')
           });
-
         }
       })
     } else {

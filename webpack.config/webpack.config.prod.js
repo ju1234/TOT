@@ -23,7 +23,8 @@ colors.setTheme({
 
 var productionConfig = baseConfig;
 
-productionConfig.output.publicPath = '/dist/';
+productionConfig.output.publicPath = 'http://oty8et70w.bkt.clouddn.com/dist';
+
 productionConfig.plugins.push(
     new webpack.DefinePlugin({
       'process.dev.NODE_ENV': JSON.stringify('production')
@@ -45,3 +46,7 @@ module.exports = productionConfig;
 
 
 console.log('webpack working'.info);
+
+
+
+
