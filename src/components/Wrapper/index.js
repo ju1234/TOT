@@ -17,13 +17,15 @@ const TabPane = Tabs.TabPane;
 export default class App extends Component {
 
   state = {
-    activeKey: '1'
+    activeKey: '1',
+    listRefresh: false
   };
 
   componentWillMount() {
     this.setActiveKey()
   }
 
+  // 设置active key
   setActiveKey = () => {
     const pathname = location.pathname;
     if (pathname == '/' || pathname == '/list') {
@@ -45,6 +47,7 @@ export default class App extends Component {
     }
   };
 
+  // 点击tab事件
   tabClick = (tabKey) => {
     this.setState({
       activeKey: tabKey.toString()
@@ -57,12 +60,21 @@ export default class App extends Component {
   };
 
 
+  // 切换tab
   switchTab = (key) => {
     this.tabClick(key)
   };
 
+  /**
+   * @param value boolean
+   */
+  setListRefresh = (value) => {
+    this.setState({
+      listRefresh: value
+    })
+  };
+
   render() {
-    console.log(this.state)
     return (
       <div className="container">
         <Card
@@ -71,21 +83,22 @@ export default class App extends Component {
           <Tabs
             defaultActiveKey={this.state.activeKey}
             onTabClick={this.tabClick}
-            // key={this.state.activeKey.toString()}
+            activeKey={this.state.activeKey}
           >
             <TabPane tab="list" key="1">
-              <TodoList/>
+              <TodoList
+                needRefresh={this.state.listRefresh}
+                setListRefresh={this.setListRefresh}
+              />
             </TabPane>
             <TabPane tab="new" key="2">
               <TodoCreate
                 switchTab={this.switchTab}
+                setListRefresh={this.setListRefresh}
               />
             </TabPane>
             <TabPane tab=" done" key="3">
               <TodoDone/>
-            </TabPane>
-            <TabPane tab="edit" key="4">
-              <TodoEdit/>
             </TabPane>
           </Tabs>
         </Card>

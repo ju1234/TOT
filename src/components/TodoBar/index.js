@@ -3,10 +3,18 @@
  */
 
 import React, {Component} from 'react';
+import './todo-bar.less'
+
 
 export default class TodoBar extends Component {
   render() {
     const {info} = this.props;
-    return <div>{info.title}</div>
+    const className =info.instancy == 1 ? "todo-bar instancy" : "todo-bar";
+
+    return (
+      <div className={className} onClick={this.props.showModal}>
+        <p>{info.title}</p>
+      </div>
+    )
   }
 }

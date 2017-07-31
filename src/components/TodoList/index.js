@@ -4,27 +4,36 @@
 
 import React, {Component} from 'react';
 import axios from 'axios';
-import {message, Pagination,Spin} from 'antd';
+import {message, Pagination,Spin,Modal} from 'antd';
 //========================================================
 import TodoBar from '../TodoBar';
+import TodoEdit from '../TodoEdit';
 // ========================================================
 import API from 'root/API';
 import './todo-list.less';
 
 export default class TodoList extends Component {
   state = {
-    todoList: [1, 2, 3, 4],
+    todoList: [],
     page: {
       total: 0,
-      size: 10,
+      size: 15,
       index: 1
     },
-    loading: true
+    loading: true,
+    modalId: '',
+    modalVisible: false
   };
 
 
   componentWillMount() {
     this.getList()
+  }
+
+  componentWillReceiveProps(nextProps){
+    if(nextProps.needRefresh){
+      this.getList()
+    }
   }
 
   // =============================获取列表数据=============================
@@ -47,7 +56,13 @@ export default class TodoList extends Component {
       })
     }).catch(err => {
       message.error('获取数据失败，请刷新网页')
-    })
+    });
+    this.props.setListRefresh(false)
+  };
+
+
+  refresh = () => {
+    this.getList()
   };
 
 
@@ -59,9 +74,23 @@ export default class TodoList extends Component {
       }
     },this.getList)
   };
+  // =============================todoList 操作=============================
+  showTodoModal = (id) => {
+    this.setState({
+      modalVisible: true,
+      modalId: id
+    })
+  };
+
+  hideTodoModal = () => {
+    this.setState({
+      modalVisible: false,
+      modalId: ''
+    })
+  };
 
   render() {
-    const {page, todoList,loading} = this.state;
+    const {page, todoList,loading,modalVisible,modalId} = this.state;
 
 
     return (
@@ -71,7 +100,7 @@ export default class TodoList extends Component {
             <div>
               {
                 todoList.map(todo => (
-                  <TodoBar key={todo.id} info={todo}/>
+                  <TodoBar key={todo.id} info={todo} showModal={this.showTodoModal.bind(this,todo.id)}/>
                 ))
               }
               <Pagination
@@ -79,6 +108,13 @@ export default class TodoList extends Component {
                 total={page.total}
                 pageSize={page.size}
                 onChange={this.pageChange}
+              />
+              <TodoEdit
+                title="详情"
+                visible={modalVisible}
+                id={modalId}
+                hideTodoModal={this.hideTodoModal}
+                refresh={this.refresh}
               />
             </div>
           )

@@ -3,10 +3,16 @@
  */
 
 const createTodo = require('./create'),
-  getTodoList = require('./getTodoList');
+  getTodoList = require('./getTodoList'),
+  detail = require('./detail'),
+  done = require('./done');
 
 module.exports = function (app) {
-  createTodo(app)
+  createTodo(app);
 
-  getTodoList(app)
+  getTodoList(app);
+
+  detail(app);
+
+  done(app);
 };

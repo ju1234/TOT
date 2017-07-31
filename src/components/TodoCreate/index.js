@@ -13,23 +13,37 @@ const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 
 class TodoCreate extends Component {
+  state = {
+    submiting: false
+  };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    if(this.state.submiting) return false
+    this.setState({
+      submiting: true
+    });
     this.props.form.validateFields((err, values) => {
       if (!err) {
         values.instancy = parseInt(values.instancy);
-
         axios.post(API.POST_CREATE_TODO,values)
           .then( res => {
             if(res.data.code == 200){
               this.props.switchTab('1');
+              this.props.setListRefresh(true);
               message.success('新建成功')
             }else {
               message.error(res.data.message)
             }
+            this.setState({
+              submiting: false
+            });
+            this.props.form.resetFields()
           }).catch( err => {
             message.error('未知错误，请稍后再试')
+            this.setState({
+              submiting: false
+            })
         })
 
       }
@@ -86,7 +100,10 @@ class TodoCreate extends Component {
             )}
           </FormItem>
           <div className="submit-group">
-            <Button htmlType="submit">提交</Button>
+            <Button
+              htmlType="submit"
+              loading={this.state.submiting}
+            >提交</Button>
           </div>
         </Form>
       </div>
