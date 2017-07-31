@@ -49,6 +49,8 @@
     "body-parser": "^1.17.2",
     "colors": "^1.1.2",
     "express": "^4.15.3",
+    "moment": "^2.18.1",
+    "qiniu": "6.1.13",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "webpack": "^2.6.1"

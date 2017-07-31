@@ -17,7 +17,7 @@ module.exports = function (app) {
           message: 'success create'
         })
       }).catch(err => {
-        console.log(err)
+        console.log(err);
       res.json({
         code: 500,
         data: 'something err',

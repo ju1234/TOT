@@ -83,7 +83,7 @@ class TodoCreate extends Component {
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label="紧急"
+            label="是否紧急"
             hasFeedback
           >
             {getFieldDecorator('instancy', {

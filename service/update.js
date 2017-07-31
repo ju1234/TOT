@@ -1,17 +1,18 @@
 /**
  * Created by jufei on 2017/7/31.
- * 标记完成
  */
 
+const mysql = require('../mysql');
 
-const mysql = require('../mysql'),
-  moment = require('moment');
 
 
 module.exports = function (app) {
-  app.put('/api/todo/done/:id',function (req,res,next) {
+  app.put('/api/todo/edit/:id',function (req,res,next) {
     const id = req.params.id;
-    mysql(`update list set done=1,doneTime='${new Date()}' where id=${id};`)
+    const data = req.body;
+
+
+    mysql(`update list set title='${data.title}',instancy=${data.instancy} where id=${id};`)
       .then( data => {
         res.json({
           code: 200,
@@ -19,12 +20,14 @@ module.exports = function (app) {
           message: 'ok'
         })
       }).catch( err => {
-        console.log(err)
+        console.log(err);
         res.json({
           code: 500,
           data: 'err',
-          message: '未知错误，请稍后再试'
+          message: '请稍后再试'
         })
     })
+    console.log('data',data)
+    console.log('id',id)
   })
 };

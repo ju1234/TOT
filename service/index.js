@@ -5,7 +5,8 @@
 const createTodo = require('./create'),
   getTodoList = require('./getTodoList'),
   detail = require('./detail'),
-  done = require('./done');
+  done = require('./done'),
+  update = require('./update');
 
 module.exports = function (app) {
   createTodo(app);
@@ -15,4 +16,6 @@ module.exports = function (app) {
   detail(app);
 
   done(app);
+
+  update(app);
 };

@@ -18,7 +18,8 @@ export default class App extends Component {
 
   state = {
     activeKey: '1',
-    listRefresh: false
+    listRefresh: false,
+    doneListRefresh: false
   };
 
   componentWillMount() {
@@ -74,6 +75,15 @@ export default class App extends Component {
     })
   };
 
+  /**
+   * @param value boolean
+   */
+  setDoneListRefresh = (value) => {
+    this.setState({
+      doneListRefresh: value
+    })
+  };
+
   render() {
     return (
       <div className="container">
@@ -89,6 +99,7 @@ export default class App extends Component {
               <TodoList
                 needRefresh={this.state.listRefresh}
                 setListRefresh={this.setListRefresh}
+                setDoneListRefresh={this.setDoneListRefresh}
               />
             </TabPane>
             <TabPane tab="new" key="2">
@@ -98,7 +109,10 @@ export default class App extends Component {
               />
             </TabPane>
             <TabPane tab=" done" key="3">
-              <TodoDone/>
+              <TodoDone
+                setDoneListRefresh={this.setDoneListRefresh}
+                doneListRefresh={this.state.doneListRefresh}
+              />
             </TabPane>
           </Tabs>
         </Card>

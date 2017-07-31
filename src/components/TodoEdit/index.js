@@ -75,15 +75,51 @@ class TodoEdit extends Component {
     });
     axios.put(API.PUT_TODO_DONE(this.id))
       .then(res => {
-        console.log(res);
-        message.success('操作成功');
-        this.close();
-        this.props.refresh();
+        if(res.data.code == 200){
+          message.success('操作成功');
+          this.close();
+          this.props.refresh();
+          this.props.setDoneListRefresh(true)
+        }else {
+          message.error('未知错误，请稍后再试')
+          this.setState({
+            submiting: false
+          })
+        }
       }).catch(err => {
       message.error('未知错误，请稍后再试')
       this.setState({
         submiting: false
       })
+    })
+  };
+
+  submitHandle = () => {
+    if(this.state.submiting) return false;
+    this.props.form.validateFields( ( err,values) => {
+      if(!err){
+        this.setState({
+          submiting: true
+        });
+        axios.put(API.POST_TODO_EDIT(this.id),values)
+          .then( res => {
+            if(res.data.code == 200){
+              message.success('操作成功');
+              this.close();
+              this.props.refresh();
+            }else {
+              message.error('未知错误，请稍后再试')
+              this.setState({
+                submiting: false
+              })
+            }
+          }).catch(err => {
+          message.error('未知错误，请稍后再试')
+          this.setState({
+            submiting: false
+          })
+        })
+      }
     })
   };
 
@@ -153,6 +189,7 @@ class TodoEdit extends Component {
             <Button
               disabled={!this.state.hasChange}
               loading={this.state.submiting}
+              onClick={this.submitHandle}
             >确认修改</Button>
             <Button
               type="primary"

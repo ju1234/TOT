@@ -1,7 +1,20 @@
 .todo-list{
+  font-size: 14px;
+  width: 100%;
+  height: 100%;
 
+  > div{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    > div{
+      flex: 1;
+      overflow-y: auto;
+    }
+
+  }
 }
-
 
 .todo-detail-modal{
   .ant-modal-footer{

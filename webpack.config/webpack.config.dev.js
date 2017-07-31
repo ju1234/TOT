@@ -14,8 +14,8 @@ var baseConfig = require('./webpack.config'),
 
 var developingConfig = baseConfig;
 
-
-developingConfig.entry.unshift(hotMiddlewareScript)
+developingConfig.output.publicPath = '/dist/';
+developingConfig.entry.unshift(hotMiddlewareScript);
 
 developingConfig.devtool = 'source-map';
 developingConfig.plugins.push(

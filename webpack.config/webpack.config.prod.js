@@ -23,7 +23,7 @@ colors.setTheme({
 
 var productionConfig = baseConfig;
 
-
+productionConfig.output.publicPath = '/dist/';
 productionConfig.plugins.push(
     new webpack.DefinePlugin({
       'process.dev.NODE_ENV': JSON.stringify('production')
