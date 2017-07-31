@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import {Form, Input, message, Modal, Radio,Button} from 'antd';
+import {Button, Form, Input, message, Modal, Radio} from 'antd';
 import axios from 'axios';
 //================================================================
 import API from 'root/API';
@@ -16,7 +16,9 @@ const RadioGroup = Radio.Group;
 class TodoEdit extends Component {
   state = {
     init: false,
-    todoInfo: {}
+    todoInfo: {},
+    hasChange: false,
+    submiting: false
   };
 
   componentWillReceiveProps(nextProps) {
@@ -32,7 +34,6 @@ class TodoEdit extends Component {
   getTodoInfo = () => {
     axios.get(API.GET_TODO_DETAIL(this.id))
       .then(res => {
-        console.log(res)
         this.setState({
           init: true
         });
@@ -52,22 +53,37 @@ class TodoEdit extends Component {
   close = () => {
     this.setState({
       init: false,
-      todoInfo: {}
+      todoInfo: {},
+      hasChange: false,
+      submiting: false
     });
     this.props.hideTodoModal()
-
   };
 
+  // 表单有所改变
+  onChange = () => {
+    this.setState({
+      hasChange: true
+    })
+  };
 
+  // 将todo标记为已完成
   putTodoDone = () => {
+    if(this.state.submiting) return false;
+    this.setState({
+      submiting: false
+    });
     axios.put(API.PUT_TODO_DONE(this.id))
-      .then( res => {
+      .then(res => {
         console.log(res);
         message.success('操作成功');
         this.close();
         this.props.refresh();
-      }).catch( err => {
-        message.error('未知错误，请稍后再试')
+      }).catch(err => {
+      message.error('未知错误，请稍后再试')
+      this.setState({
+        submiting: false
+      })
     })
   };
 
@@ -105,14 +121,18 @@ class TodoEdit extends Component {
                 required: true,
                 message: '请输入事件描述!',
               }],
-              initialValue: todoInfo.title
+              initialValue: todoInfo.title,
+              onChange: this.onChange
             })(
-              <Input type="text" placeholder="请输入事件描述"/>
+              <Input
+                type="text"
+                placeholder="请输入事件描述"
+              />
             )}
           </FormItem>
           <FormItem
             {...formItemLayout}
-            label="紧急"
+            label="是否紧急"
             hasFeedback
           >
             {getFieldDecorator('instancy', {
@@ -120,7 +140,8 @@ class TodoEdit extends Component {
                 required: true,
                 message: '请选择是否紧急!',
               }],
-              initialValue: todoInfo.instancy == 0 ? '0' : '1'
+              initialValue: todoInfo.instancy == 0 ? '0' : '1',
+              onChange: this.onChange
             })(
               <RadioGroup>
                 <Radio value="0">否</Radio>
@@ -130,11 +151,13 @@ class TodoEdit extends Component {
           </FormItem>
           <div className="edit-group">
             <Button
-
+              disabled={!this.state.hasChange}
+              loading={this.state.submiting}
             >确认修改</Button>
             <Button
               type="primary"
               onClick={this.putTodoDone}
+              loading={this.state.submiting}
             >标记完成</Button>
           </div>
         </Form>
