@@ -69,18 +69,18 @@ class TodoEdit extends Component {
 
   // 将todo标记为已完成
   putTodoDone = () => {
-    if(this.state.submiting) return false;
+    if (this.state.submiting) return false;
     this.setState({
       submiting: false
     });
     axios.put(API.PUT_TODO_DONE(this.id))
       .then(res => {
-        if(res.data.code == 200){
+        if (res.data.code == 200) {
           message.success('操作成功');
           this.close();
           this.props.refresh();
           this.props.setDoneListRefresh(true)
-        }else {
+        } else {
           message.error('未知错误，请稍后再试')
           this.setState({
             submiting: false
@@ -95,19 +95,19 @@ class TodoEdit extends Component {
   };
 
   submitHandle = () => {
-    if(this.state.submiting) return false;
-    this.props.form.validateFields( ( err,values) => {
-      if(!err){
+    if (this.state.submiting) return false;
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
         this.setState({
           submiting: true
         });
-        axios.put(API.POST_TODO_EDIT(this.id),values)
-          .then( res => {
-            if(res.data.code == 200){
+        axios.put(API.POST_TODO_EDIT(this.id), values)
+          .then(res => {
+            if (res.data.code == 200) {
               message.success('操作成功');
               this.close();
               this.props.refresh();
-            }else {
+            } else {
               message.error('未知错误，请稍后再试')
               this.setState({
                 submiting: false

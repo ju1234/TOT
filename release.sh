@@ -17,7 +17,8 @@ path=:/data/web/todo-list
 echo '开始上传'
 
 scp -r ./public/ root@${host}${path}/
-#scp -r ./mysql ./routes ./package.json ./server.js ./service root@${host}${path}
+scp -r ./mysql ./routes ./package.json ./server.js ./service root@${host}${path}
+#scp -r ./service root@${host}${path}
 
 export NODE_ENV=production & node qiniu.config.js
 

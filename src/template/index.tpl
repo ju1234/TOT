@@ -8,7 +8,7 @@
   <meta content="yes" name="apple-mobile-web-app-capable">
   <meta content="yes" name="apple-touch-fullscreen">
   <meta content="telephone=no,email=no" name="format-detection">
-  <title>Title</title>
+  <title>todo</title>
 </head>
 <body>
 <div id="root"></div>
