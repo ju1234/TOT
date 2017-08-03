@@ -28,7 +28,6 @@ function qiniuUpload(key, filePath, bucket = 'todo') {
     return putPolicy.token();
   }
 
-  console.log('key',key)
   const token = uptoken(bucket, key);
 
   return new Promise((res, rej) => {
