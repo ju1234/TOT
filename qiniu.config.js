@@ -44,7 +44,7 @@ function qiniuUpload(key, filePath, bucket = 'todo') {
   })
 }
 
-const extnameContainer = ['.jpg', '.js', '.css', '.html', '.htm', '.gif', '.png', '.jpeg'];
+const extnameContainer = ['.jpg', '.js', '.css', '.html', '.htm', '.gif', '.png', '.jpeg','.manifest'];
 
 
 // 遍历文件夹 上传所有文件
@@ -64,7 +64,7 @@ function mapFilesToQiniu(dirPath = path.join(__dirname, 'public')) {
               console.log(res)
             })
             .catch( err => {
-            console.log('13123123231132')
+              console.log(err);
           });
         }
       })

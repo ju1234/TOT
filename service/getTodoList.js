@@ -52,5 +52,5 @@ module.exports = function (app) {
 
 function sqlFactory(params) {
   const start = (params.index - 1) * params.size;
-  return `select * from list where done=${params.done} ${params.done == 1 ? 'order by doneTime desc' : ''} limit ${start},${params.size} ;`;
+  return `select * from list where done=${params.done} ${params.done == 1 ? 'order by doneTime desc' : 'order by done'} limit ${start},${params.size} ;`;
 }
