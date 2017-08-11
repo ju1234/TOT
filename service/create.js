@@ -40,5 +40,5 @@ function createSqlFactory(data) {
     }
   });
 
-  return `insert into list (${keys.join(',')}) values (${values.join(',')});`
+  return  `insert into list (${keys.join(',')}) values (${values.join(',')});`
 }

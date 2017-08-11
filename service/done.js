@@ -11,7 +11,7 @@ const mysql = require('../mysql'),
 module.exports = function (app) {
   app.put('/api/todo/done/:id',function (req,res,next) {
     const id = req.params.id;
-    mysql(`update list set done=1,doneTime='${new Date()}' where id=${id};`)
+    mysql(`update list set done=1,doneTime=now() where id=${id};`)
       .then( data => {
         res.json({
           code: 200,
