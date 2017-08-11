@@ -11,7 +11,9 @@ import TodoEdit from '../TodoEdit';
 //========================================================================
 import './wrapper.less';
 
-
+const isDeveloping = process.env.NODE_ENV === 'development';
+console.log('isDeveloping')
+const prefix = isDeveloping ? '' : '/todoList';
 const TabPane = Tabs.TabPane;
 
 export default class App extends Component {
@@ -33,15 +35,15 @@ export default class App extends Component {
       this.setState({
         activeKey: '1'
       });
-    } else if (pathname == '/todoList/new') {
+    } else if (pathname == `${prefix}/new`) {
       this.setState({
         activeKey: '2'
       });
-    } else if (pathname == '/todoList/edit') {
+    } else if (pathname == `${prefix}/edit`) {
       this.setState({
         activeKey: '4'
       });
-    } else if (pathname == '/todoList/done') {
+    } else if (pathname == `${prefix}/done`) {
       this.setState({
         activeKey: '3'
       });
@@ -54,10 +56,10 @@ export default class App extends Component {
       activeKey: tabKey.toString()
     });
 
-    if (tabKey == 1) history.pushState({}, '', '/todoList/');
-    else if (tabKey == 2) history.pushState({}, '', '/todoList/new');
-    else if (tabKey == 3) history.pushState({}, '', '/todoList/done');
-    else if (tabKey == 4) history.pushState({}, '', '/todoList/edit')
+    if (tabKey == 1) history.pushState({}, '', `${prefix}/`);
+    else if (tabKey == 2) history.pushState({}, '', `${prefix}/new`);
+    else if (tabKey == 3) history.pushState({}, '', `${prefix}/done`);
+    else if (tabKey == 4) history.pushState({}, '', `${prefix}/edit`)
   };
 
 
