@@ -15,6 +15,8 @@ const isDeveloping = process.env.NODE_ENV === 'development';
 console.log('isDeveloping')
 const prefix = isDeveloping ? '' : '/todoList';
 const TabPane = Tabs.TabPane;
+const param = process.env.NODE_ENV === 'development' ? '' : '/todoList';
+
 
 export default class App extends Component {
 
@@ -31,10 +33,11 @@ export default class App extends Component {
   // 设置active key
   setActiveKey = () => {
     const pathname = location.pathname;
-    if (pathname == '/todoList' || pathname == '/list') {
+    if (pathname == `${param}/` || pathname == '/list') {
       this.setState({
         activeKey: '1'
       });
+<<<<<<< HEAD
     } else if (pathname == `${prefix}/new`) {
       this.setState({
         activeKey: '2'
@@ -44,6 +47,17 @@ export default class App extends Component {
         activeKey: '4'
       });
     } else if (pathname == `${prefix}/done`) {
+=======
+    } else if (pathname == `${param}/new`) {
+      this.setState({
+        activeKey: '2'
+      });
+    } else if (pathname == `${param}/edit`) {
+      this.setState({
+        activeKey: '4'
+      });
+    } else if (pathname == `${param}/done`) {
+>>>>>>> develop
       this.setState({
         activeKey: '3'
       });
@@ -56,10 +70,17 @@ export default class App extends Component {
       activeKey: tabKey.toString()
     });
 
+<<<<<<< HEAD
     if (tabKey == 1) history.pushState({}, '', `${prefix}/`);
     else if (tabKey == 2) history.pushState({}, '', `${prefix}/new`);
     else if (tabKey == 3) history.pushState({}, '', `${prefix}/done`);
     else if (tabKey == 4) history.pushState({}, '', `${prefix}/edit`)
+=======
+    if (tabKey == 1) history.pushState({}, '', `${param}/`);
+    else if (tabKey == 2) history.pushState({}, '', `${param}/new`);
+    else if (tabKey == 3) history.pushState({}, '', `${param}/done`);
+    else if (tabKey == 4) history.pushState({}, '', `${param}/edit`)
+>>>>>>> develop
   };
 
 
