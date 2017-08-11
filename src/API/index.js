@@ -6,7 +6,7 @@ const isDeveloping = process.env.NODE_ENV === 'development';
 const prefix = isDeveloping ? '' : '/todoList';
 
 export default  {
-  POST_CREATE_TODO: `/api/todo/create`,
+  POST_CREATE_TODO: `${prefix}/api/todo/create`,
   GET_TODO_LIST: `${prefix}/api/todo/list`,
   GET_TODO_DETAIL: id => `${prefix}/api/todo/${id}`,
   PUT_TODO_DONE: id => `${prefix}/api/todo/done/${id}`,
