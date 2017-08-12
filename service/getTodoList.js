@@ -21,10 +21,9 @@ module.exports = function (app) {
     params.size = params.size ? parseInt(params.size) :  20;
     params.index = params.index ? parseInt(params.index) :  1;
 
-
     Promise.all([
       mysql(sqlFactory(params)),
-      mysql(`select count(*) as count from list where done=${params.done};`)
+      mysql(`SELECT count(*) AS count FROM list WHERE done=${params.done};`)
     ]).then(res => {
       response.json({
         code: 200,
@@ -49,8 +48,7 @@ module.exports = function (app) {
   })
 };
 
-
 function sqlFactory(params) {
   const start = (params.index - 1) * params.size;
-  return `select * from list where done=${params.done} ${params.done == 1 ? 'order by doneTime desc' : 'order by done'} limit ${start},${params.size} ;`;
+  return `SELECT * FROM list WHERE done=${params.done} ${params.done == 1 ? 'ORDER BY doneTime DESC' : 'ORDER BY createTime DESC'} LIMIT ${start},${params.size} ;`;
 }

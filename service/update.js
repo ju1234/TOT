@@ -11,8 +11,7 @@ module.exports = function (app) {
     const id = req.params.id;
     const data = req.body;
 
-
-    mysql(`update list set title='${data.title}',instancy=${data.instancy} where id=${id};`)
+    mysql(`UPDATE list SET title='${data.title}',instancy=${data.instancy} WHERE id=${id};`)
       .then( data => {
         res.json({
           code: 200,
@@ -27,7 +26,5 @@ module.exports = function (app) {
           message: '请稍后再试'
         })
     })
-    console.log('data',data)
-    console.log('id',id)
   })
 };

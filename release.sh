@@ -33,7 +33,7 @@ echo '文件上传成功'
 #exit
 #remotessh
 
-echo 'server start at port 8080'
+echo 'server restart success'
 
 
 

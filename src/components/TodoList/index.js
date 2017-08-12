@@ -22,7 +22,7 @@ export default class TodoList extends Component {
     todoList: [],
     page: {
       total: 0,
-      size: 10,
+      size: 100,
       index: 1
     },
     loading: true,
@@ -41,8 +41,15 @@ export default class TodoList extends Component {
     }
   }
 
-  componentDidMount(){
 
+
+  componentDidUpdate(){
+    this.listDom = document.getElementById('list');
+    if(this.listDom !== null){
+      this.listScroll = new IScroll(this.listDom,{
+        mouseWheel: false,
+      });
+    }
   }
 
   // =============================获取列表数据=============================
@@ -62,11 +69,6 @@ export default class TodoList extends Component {
         todoList: res.data.data.list,
         page: res.data.data.page,
         loading: false
-      },() => {
-        // this.listScroll = new IScroll('#list', {
-        //   // disableMouse: true,
-        //   // disablePointer: true
-        // });
       })
     }).catch(err => {
       message.error('获取数据失败，请刷新网页')
@@ -112,17 +114,19 @@ export default class TodoList extends Component {
         {
           loading ? <Spin/> : (
             <div>
-              <ul id="list">
-                {
-                  todoList.map(todo => (
-                    <TodoBar
-                      key={todo.id}
-                      info={todo}
-                      showModal={this.showTodoModal.bind(this, todo.id)}
-                    />
-                  ))
-                }
-              </ul>
+              <div id="list">
+                <ul >
+                  {
+                    todoList.map(todo => (
+                      <TodoBar
+                        key={todo.id}
+                        info={todo}
+                        showModal={this.showTodoModal.bind(this, todo.id)}
+                      />
+                    ))
+                  }
+                </ul>
+              </div>
               <Pagination
                 current={page.index}
                 total={page.total}

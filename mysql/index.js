@@ -10,7 +10,7 @@ const pool = mysql.createPool({
   user: 'root',//用户名
   password: '',//密码
   database: 'todo',//数据库名
-  connectionLimit: 10,//连接池最大连接数（默认：10）
+  connectionLimit: 100,//连接池最大连接数（默认：10）
   queueLimit: 10,// 连接池没有连接可用时，队列的最大长度（默认： 0）
 });
 

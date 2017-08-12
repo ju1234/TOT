@@ -10,7 +10,7 @@ module.exports = function (app) {
   app.get('/api/todo/:id',function (req,res,next) {
     const id = req.params.id;
     console.log(req.params.id)
-    mysql(`select * from list where id=${id};`)
+    mysql(`SELECT * FROM list WHERE id=${id};`)
       .then( data => {
         res.json({
           code: 200,

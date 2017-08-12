@@ -39,6 +39,14 @@ export default class TodoDone extends Component {
     }
   }
 
+  componentDidUpdate(){
+    this.doneListDom = document.getElementById('done');
+    if(this.doneListDom !== null){
+      this.doneScroll = new IScroll(this.doneListDom,{
+        mouseWheel: false,
+      });
+    }
+  }
   // =============================获取列表数据=============================
   getList = () => {
     this.setState({
@@ -56,11 +64,6 @@ export default class TodoDone extends Component {
         doneList: res.data.data.list,
         page: res.data.data.page,
         loading: false
-      }, () => {
-        // this.doneScroll = new IScroll('#done', {
-        //   // disableMouse: true,
-        //   // disablePointer: true
-        // });
       })
     });
 
@@ -96,25 +99,27 @@ export default class TodoDone extends Component {
         {
           loading ? <Spin/> : (
             <div>
-              <Timeline id="done">
-                {
-                  doneList.map(todo => {
-                    let color = this.getColor();
-                    return (
-                      <Timeline.Item
-                        key={todo.id.toString()} className="todo-done-bar"
-                        color={color}
-                      >
-                        <p>{todo.title}</p>
-                        <p>
-                          <span>{todo.createTime && moment(todo.createTime).format('YYYY-MM-DD HH:mm:ss')}</span>
-                          <span>{todo.doneTime != null && moment(todo.doneTime).format('YYYY-MM-DD HH:mm:ss')}</span>
-                        </p>
-                      </Timeline.Item>
-                    )
-                  })
-                }
-              </Timeline>
+              <div id="done">
+                <Timeline >
+                  {
+                    doneList.map(todo => {
+                      let color = this.getColor();
+                      return (
+                        <Timeline.Item
+                          key={todo.id.toString()} className="todo-done-bar"
+                          color={color}
+                        >
+                          <p>{todo.title}</p>
+                          <p>
+                            <span>{todo.createTime && moment(todo.createTime).format('YYYY-MM-DD HH:mm:ss')}</span>
+                            <span>{todo.doneTime != null && moment(todo.doneTime).format('YYYY-MM-DD HH:mm:ss')}</span>
+                          </p>
+                        </Timeline.Item>
+                      )
+                    })
+                  }
+                </Timeline>
+              </div>
 
               <Pagination
                 className="pagination"
