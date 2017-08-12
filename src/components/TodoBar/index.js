@@ -13,12 +13,12 @@ export default class TodoBar extends Component {
     const className = info.instancy == 1 ? "todo-bar instancy" : "todo-bar";
 
     return (
-      <div className={className} onClick={this.props.showModal}>
+      <li className={className} onClick={this.props.showModal}>
         <p>{info.title}</p>
         <p className="create-time">
           {info.createTime && moment(info.createTime).format('YYYY-MM-DD HH:mm:ss')}
         </p>
-      </div>
+      </li>
     )
   }
 }

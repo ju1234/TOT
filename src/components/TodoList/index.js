@@ -98,7 +98,7 @@ export default class TodoList extends Component {
         {
           loading ? <Spin/> : (
             <div>
-              <div>
+              <ul id="list">
                 {
                   todoList.map(todo => (
                     <TodoBar
@@ -108,7 +108,7 @@ export default class TodoList extends Component {
                     />
                   ))
                 }
-              </div>
+              </ul>
               <Pagination
                 current={page.index}
                 total={page.total}

@@ -7,7 +7,6 @@ import {Card, Tabs} from 'antd';
 import TodoList from '../TodoList';
 import TodoCreate from '../TodoCreate';
 import TodoDone from '../TodoDone';
-import TodoEdit from '../TodoEdit';
 //========================================================================
 import './wrapper.less';
 
@@ -26,6 +25,9 @@ export default class App extends Component {
 
   componentWillMount() {
     this.setActiveKey()
+  }
+
+  componentDidMount() {
   }
 
   // 设置active key
