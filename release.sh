@@ -26,12 +26,12 @@ export NODE_ENV=production & node qiniu.config.js
 
 echo '文件上传成功'
 
-#ssh ${host}   << remotessh
-#cd /data/web/todo-list
-#export NODE_ENV=production &
-#forever restart ./server.js
-#exit
-#remotessh
+ssh ${host}   << remotessh
+cd /data/web/todo-list
+export NODE_ENV=production &
+forever restart ./server.js
+exit
+remotessh
 
 echo 'server restart success'
 
