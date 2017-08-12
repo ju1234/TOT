@@ -13,6 +13,12 @@ import './todo-done.less';
 
 
 export default class TodoDone extends Component {
+  constructor(props) {
+    super(props);
+    this.doneScroll = null;
+  }
+
+
   state = {
     loading: true,
     doneList: [],
@@ -50,6 +56,11 @@ export default class TodoDone extends Component {
         doneList: res.data.data.list,
         page: res.data.data.page,
         loading: false
+      }, () => {
+        // this.doneScroll = new IScroll('#done', {
+        //   // disableMouse: true,
+        //   // disablePointer: true
+        // });
       })
     });
 
@@ -85,7 +96,7 @@ export default class TodoDone extends Component {
         {
           loading ? <Spin/> : (
             <div>
-              <Timeline>
+              <Timeline id="done">
                 {
                   doneList.map(todo => {
                     let color = this.getColor();

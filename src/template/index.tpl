@@ -12,5 +12,6 @@
 </head>
 <body>
 <div id="root"></div>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>-->
 </body>
 </html>

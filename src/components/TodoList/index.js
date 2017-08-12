@@ -13,6 +13,11 @@ import API from 'root/API';
 import './todo-list.less';
 
 export default class TodoList extends Component {
+  constructor(props){
+    super(props);
+    this.listScroll = null;
+  }
+
   state = {
     todoList: [],
     page: {
@@ -36,6 +41,10 @@ export default class TodoList extends Component {
     }
   }
 
+  componentDidMount(){
+
+  }
+
   // =============================获取列表数据=============================
   getList = () => {
     this.setState({
@@ -53,6 +62,11 @@ export default class TodoList extends Component {
         todoList: res.data.data.list,
         page: res.data.data.page,
         loading: false
+      },() => {
+        // this.listScroll = new IScroll('#list', {
+        //   // disableMouse: true,
+        //   // disablePointer: true
+        // });
       })
     }).catch(err => {
       message.error('获取数据失败，请刷新网页')
