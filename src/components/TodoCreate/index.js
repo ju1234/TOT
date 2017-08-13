@@ -19,12 +19,12 @@ class TodoCreate extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    if(this.state.submiting) return false
-    this.setState({
-      submiting: true
-    });
+    if(this.state.submiting) return false;
     this.props.form.validateFields((err, values) => {
       if (!err) {
+        this.setState({
+          submiting: true
+        });
         values.instancy = parseInt(values.instancy);
         axios.post(API.POST_CREATE_TODO,values)
           .then( res => {

@@ -24,7 +24,7 @@ export default class TodoDone extends Component {
     doneList: [],
     page: {
       total: 0,
-      size: 100,
+      size: 10,
       index: 1
     },
   };

@@ -71,7 +71,7 @@ class TodoEdit extends Component {
   putTodoDone = () => {
     if (this.state.submiting) return false;
     this.setState({
-      submiting: false
+      submiting: true
     });
     axios.put(API.PUT_TODO_DONE(this.id))
       .then(res => {
