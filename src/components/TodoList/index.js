@@ -5,9 +5,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {message, Pagination, Spin} from 'antd';
+import lazyLoad from 'root/utils/lazyLoad';
 //========================================================
 import TodoBar from '../TodoBar';
-import TodoEdit from '../TodoEdit';
+const TodoEdit = lazyLoad(require('bundle-loader?lazy&name=TodoEdit!../TodoEdit'));
 // ========================================================
 import API from 'root/API';
 import './todo-list.less';

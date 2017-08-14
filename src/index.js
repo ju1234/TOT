@@ -3,9 +3,13 @@
  *
  * 入口文件
  */
-import React,{Component} from 'react';
+import React from 'react';
 import {render} from 'react-dom';
 import App from './components/Wrapper';
+//========================================================
+import './utils/iSroll-polyfill';
+
+render(<App/>, document.getElementById('root'));
 
 
-render(<App/>,document.getElementById('root'));
+

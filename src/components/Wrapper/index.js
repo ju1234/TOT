@@ -3,12 +3,14 @@
  */
 import React, {Component} from 'react';
 import {Card, Tabs} from 'antd';
+import lazyLoad from 'root/utils/lazyLoad'
 //========================================================================
-import TodoList from '../TodoList';
-import TodoCreate from '../TodoCreate';
-import TodoDone from '../TodoDone';
+const TodoList = lazyLoad(require('bundle-loader?lazy&name=TodoList!../TodoList'));
+const TodoCreate = lazyLoad(require('bundle-loader?lazy&name=TodoCreate!../TodoCreate'));
+const TodoDone = lazyLoad(require('bundle-loader?lazy&name=TodoDone!../TodoDone'));
 //========================================================================
 import './wrapper.less';
+
 
 
 const TabPane = Tabs.TabPane;
