@@ -49,7 +49,6 @@ export default class TodoList extends Component {
       this.listScroll = new IScroll(this.listDom,{
         mouseWheel: false,
         click: true,
-        disableTouch: true
       });
     }
   }
