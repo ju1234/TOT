@@ -26,7 +26,7 @@ class TodoEdit extends Component {
     hideTodoModal: React.PropTypes.func.isRequired,
     refresh: React.PropTypes.func.isRequired,
     setDoneListRefresh: React.PropTypes.func.isRequired,
-    // form: React.PropTypes.object.isRequired,
+    form: React.PropTypes.object.isRequired,
     title: React.PropTypes.string.isRequired,
     visible: React.PropTypes.bool.isRequired
   };
