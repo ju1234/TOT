@@ -31,6 +31,13 @@ export default class TodoList extends Component {
   };
 
 
+  static propTypes = {
+    setListRefresh: React.PropTypes.func.isRequired,
+    setDoneListRefresh: React.PropTypes.func.isRequired,
+    needRefresh: React.PropTypes.bool.isRequired
+  };
+
+
   componentWillMount() {
     this.getList()
   }
@@ -138,7 +145,7 @@ export default class TodoList extends Component {
               <TodoEdit
                 title="详情"
                 visible={modalVisible}
-                id={modalId}
+                id={parseInt(modalId)}
                 setDoneListRefresh={this.props.setDoneListRefresh}
                 hideTodoModal={this.hideTodoModal}
                 refresh={this.refresh}

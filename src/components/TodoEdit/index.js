@@ -21,6 +21,16 @@ class TodoEdit extends Component {
     submiting: false
   };
 
+  static propTypes = {
+    id: React.PropTypes.number.isRequired,
+    hideTodoModal: React.PropTypes.func.isRequired,
+    refresh: React.PropTypes.func.isRequired,
+    setDoneListRefresh: React.PropTypes.func.isRequired,
+    // form: React.PropTypes.object.isRequired,
+    title: React.PropTypes.string.isRequired,
+    visible: React.PropTypes.bool.isRequired
+  };
+
   componentWillReceiveProps(nextProps) {
     this.id = nextProps.id;
 

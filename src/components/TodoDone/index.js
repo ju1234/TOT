@@ -29,6 +29,11 @@ export default class TodoDone extends Component {
     },
   };
 
+  static propTypes = {
+    setDoneListRefresh: React.PropTypes.func.isRequired,
+    doneListRefresh: React.PropTypes.bool.isRequired
+  };
+
   componentWillMount() {
     this.getList()
   }

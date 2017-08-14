@@ -17,6 +17,12 @@ class TodoCreate extends Component {
     submiting: false
   };
 
+  static propTypes = {
+    form: React.PropTypes.object.isRequired,
+    switchTab: React.PropTypes.func.isRequired,
+    setListRefresh: React.PropTypes.func.isRequired,
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
     if(this.state.submiting) return false;
