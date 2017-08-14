@@ -23,7 +23,7 @@ colors.setTheme({
 
 var productionConfig = baseConfig;
 
-productionConfig.output.publicPath = 'http://oty8et70w.bkt.clouddn.com/dist';
+productionConfig.output.publicPath = 'http://oty8et70w.bkt.clouddn.com/dist/';
 
 productionConfig.plugins.push(
     new webpack.DefinePlugin({
