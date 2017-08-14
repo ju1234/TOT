@@ -46,7 +46,7 @@ class TodoCreate extends Component {
             });
             this.props.form.resetFields()
           }).catch( err => {
-            message.error('未知错误，请稍后再试')
+            message.error('未知错误，请稍后再试');
             this.setState({
               submiting: false
             })

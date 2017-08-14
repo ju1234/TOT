@@ -46,7 +46,7 @@ export default class TodoDone extends Component {
 
   componentDidUpdate(){
     this.doneListDom = document.getElementById('done');
-    if(this.doneListDom !== null){
+    if(this.doneListDom !== null && window.IScroll){
       this.doneScroll = new IScroll(this.doneListDom,{
         mouseWheel: false,
       });

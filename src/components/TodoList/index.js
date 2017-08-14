@@ -53,7 +53,7 @@ export default class TodoList extends Component {
 
   componentDidUpdate(){
     this.listDom = document.getElementById('list');
-    if(this.listDom !== null){
+    if(this.listDom !== null && window.IScroll){
       this.listScroll = new IScroll(this.listDom,{
         mouseWheel: false,
         click: true,
