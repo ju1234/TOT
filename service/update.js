@@ -2,7 +2,8 @@
  * Created by jufei on 2017/7/31.
  */
 
-const mysql = require('../mysql');
+const mysql = require('../mysql'),
+  tableName = require('../mysql/tableName');
 
 
 
@@ -11,7 +12,7 @@ module.exports = function (app) {
     const id = req.params.id;
     const data = req.body;
 
-    mysql(`UPDATE list SET title='${data.title}',instancy=${data.instancy} WHERE id=${id};`)
+    mysql(`UPDATE ${tableName.TODO_LIST} SET title='${data.title}',instancy=${data.instancy} WHERE id=${id};`)
       .then( data => {
         res.json({
           code: 200,
@@ -28,3 +29,5 @@ module.exports = function (app) {
     })
   })
 };
+
+

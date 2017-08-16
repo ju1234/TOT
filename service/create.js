@@ -3,7 +3,8 @@
  * 新建todo
  */
 
-const mysql = require('../mysql');
+const mysql = require('../mysql'),
+  tableName = require('../mysql/tableName');
 
 module.exports = function (app) {
 
@@ -40,7 +41,7 @@ function createSqlFactory(data) {
     }
   });
 
-  return  `INSERT INTO list (${keys.join(',')}) VALUES (${values.join(',')});`;
+  return  `INSERT INTO ${tableName.TODO_LIST} (${keys.join(',')}) VALUES (${values.join(',')});`;
 }
 
 

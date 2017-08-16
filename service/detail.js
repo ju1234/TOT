@@ -3,14 +3,15 @@
  * 获取todo详情
  */
 
-const mysql = require('../mysql');
+const mysql = require('../mysql'),
+  tableName = require('../mysql/tableName');
 
 
 module.exports = function (app) {
   app.get('/api/todo/:id',function (req,res,next) {
     const id = req.params.id;
     console.log(req.params.id)
-    mysql(`SELECT * FROM list WHERE id=${id};`)
+    mysql(`SELECT * FROM ${tableName.TODO_LIST} WHERE id=${id};`)
       .then( data => {
         res.json({
           code: 200,

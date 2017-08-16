@@ -5,13 +5,14 @@
 
 
 const mysql = require('../mysql'),
-  moment = require('moment');
+  moment = require('moment'),
+  tableName = require('../mysql/tableName');
 
 
 module.exports = function (app) {
   app.put('/api/todo/done/:id',function (req,res,next) {
     const id = req.params.id;
-    mysql(`UPDATE list SET done=1,doneTime=now() WHERE id=${id};`)
+    mysql(`UPDATE ${tableName.TODO_LIST} SET done=1,doneTime=now() WHERE id=${id};`)
       .then( data => {
         res.json({
           code: 200,
@@ -19,7 +20,7 @@ module.exports = function (app) {
           message: 'ok'
         })
       }).catch( err => {
-        console.log(err)
+        console.log(err);
         res.json({
           code: 500,
           data: 'err',

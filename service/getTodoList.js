@@ -3,7 +3,8 @@
  * 获取todo列表
  */
 
-const mysql = require('../mysql');
+const mysql = require('../mysql'),
+  tableName = require('../mysql/tableName');
 
 
 /**
@@ -23,7 +24,7 @@ module.exports = function (app) {
 
     Promise.all([
       mysql(sqlFactory(params)),
-      mysql(`SELECT count(*) AS count FROM list WHERE done=${params.done};`)
+      mysql(`SELECT count(*) AS count FROM ${tableName.TODO_LIST} WHERE done=${params.done};`)
     ]).then(res => {
       response.json({
         code: 200,
@@ -50,5 +51,5 @@ module.exports = function (app) {
 
 function sqlFactory(params) {
   const start = (params.index - 1) * params.size;
-  return `SELECT * FROM list WHERE done=${params.done} ${params.done == 1 ? 'ORDER BY doneTime DESC' : 'ORDER BY createTime DESC'} LIMIT ${start},${params.size} ;`;
+  return `SELECT * FROM ${tableName.TODO_LIST} WHERE done=${params.done} ${params.done == 1 ? 'ORDER BY doneTime DESC' : 'ORDER BY createTime DESC'} LIMIT ${start},${params.size} ;`;
 }
