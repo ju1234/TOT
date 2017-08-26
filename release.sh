@@ -11,7 +11,7 @@ export NODE_ENV=production&& webpack -p --config ./webpack.config/webpack.config
 
 echo '打包完成'
 
-host=104.131.137.6
+host=45.32.44.86
 path=:/data/web/todo-list
 
 echo '开始上传'
