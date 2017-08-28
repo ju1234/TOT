@@ -23,7 +23,7 @@ export default class TodoList extends Component {
     todoList: [],
     page: {
       total: 0,
-      size: 100,
+      size: 10,
       index: 1
     },
     loading: true,
@@ -49,18 +49,6 @@ export default class TodoList extends Component {
     }
   }
 
-
-
-  componentDidUpdate(){
-    this.listDom = document.getElementById('list');
-    if(this.listDom !== null && window.IScroll){
-      this.listScroll = new IScroll(this.listDom,{
-        mouseWheel: false,
-        click: true,
-      });
-    }
-  }
-
   // =============================获取列表数据=============================
   getList = () => {
     this.setState({
@@ -78,6 +66,14 @@ export default class TodoList extends Component {
         todoList: res.data.data.list,
         page: res.data.data.page,
         loading: false
+      },() => {
+        this.listDom = document.getElementById('list');
+        if(this.listDom !== null && window.IScroll){
+          this.listScroll = new IScroll(this.listDom,{
+            mouseWheel: false,
+            click: true,
+          });
+        }
       })
     }).catch(err => {
       message.error('获取数据失败，请刷新网页')

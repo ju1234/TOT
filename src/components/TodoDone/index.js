@@ -45,12 +45,7 @@ export default class TodoDone extends Component {
   }
 
   componentDidUpdate(){
-    this.doneListDom = document.getElementById('done');
-    if(this.doneListDom !== null && window.IScroll){
-      this.doneScroll = new IScroll(this.doneListDom,{
-        mouseWheel: false,
-      });
-    }
+
   }
   // =============================获取列表数据=============================
   getList = () => {
@@ -69,6 +64,13 @@ export default class TodoDone extends Component {
         doneList: res.data.data.list,
         page: res.data.data.page,
         loading: false
+      },() => {
+        this.doneListDom = document.getElementById('done');
+        if(this.doneListDom !== null && window.IScroll){
+          this.doneScroll = new IScroll(this.doneListDom,{
+            mouseWheel: false,
+          });
+        }
       })
     });
 
