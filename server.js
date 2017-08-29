@@ -6,7 +6,9 @@
 const path = require('path'),
   express = require('express'),
   fs = require('fs'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  proxy = require('express-http-proxy');
+
 
 
 const routes = require('./routes'),
@@ -28,8 +30,23 @@ const port = isDeveloping ? 7777 : 9999;
 // 静态文件目录
 app.use(express.static(path.resolve(__dirname, './public')));
 
-// 接口挂载
-service(app);
+
+// 接口转发
+const proxyHost = 'http://127.0.0.1:8089';   // 大伟新服务器地址
+app.use('/', proxy(proxyHost, {
+  filter: (req, res) => {
+    if(req.url.indexOf('/api/') === 0){
+      console.log(`api ====> ${proxyHost}`)
+    }
+    return req.url.indexOf('/api/') === 0;
+  },
+  // proxyReqPathResolver: (req, res) => {
+  //   return '/admin-api/V1' + req.url.replace('/api','');
+  // }
+}));
+
+// // 接口挂载
+// service(app);
 /**
  * 开发模式： 使用webpack hot middleware
  * 生产模式： 直接发送打包好的文件

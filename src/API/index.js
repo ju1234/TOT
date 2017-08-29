@@ -2,7 +2,7 @@
  * Created by jufei on 2017/7/30.
  */
 
-console.log(process.env.NODE_ENV,'process.env.NODE_ENV')
+console.log(process.env.NODE_ENV,'process.env.NODE_ENV');
 const param = process.env.NODE_ENV === 'development' ? '' : '/todoList';
 
 export default  {
