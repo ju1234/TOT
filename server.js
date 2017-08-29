@@ -7,7 +7,9 @@ const path = require('path'),
   express = require('express'),
   fs = require('fs'),
   bodyParser = require('body-parser'),
-  proxy = require('express-http-proxy');
+  proxy = require('express-http-proxy'),
+  shell = require('shelljs');
+
 
 
 
@@ -90,6 +92,12 @@ if (isDeveloping) {
       })
   })
 }
+
+// 服务重启
+app.get('/asd/restart',function(req,res,next){
+  shell.exec('forever restartall');
+  res.send('restart success')
+});
 
 /**
  * 服务开启

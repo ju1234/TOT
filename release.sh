@@ -25,21 +25,7 @@ export NODE_ENV=production & node qiniu.config.js
 
 echo '文件上传成功'
 
-ssh ${host}   << remotessh
-cd /data/web/todo-list
-export NODE_ENV=production &
-forever restart ./server.js
-exit
-remotessh
+curl http://${host}/todoList/asd/restart
 
 echo 'server restart success'
 
-
-
-
-
-
-
-#   /usr/local/node-v6.10.0-linux-x64/lib/node_modules/forever/bin/forever
-
-#ssh root@106.14.96.93 cd /web/data/bank-marking-release & forever stop server.js & forever start server.js
