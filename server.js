@@ -32,7 +32,7 @@ app.use(express.static(path.resolve(__dirname, './public')));
 
 
 // 接口转发
-const proxyHost = 'http://127.0.0.1:8089';   // 大伟新服务器地址
+const proxyHost = 'http://localhost:8089';
 app.use('/', proxy(proxyHost, {
   filter: (req, res) => {
     if(req.url.indexOf('/api/') === 0){
