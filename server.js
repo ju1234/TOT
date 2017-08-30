@@ -33,22 +33,22 @@ const port = isDeveloping ? 7777 : 9999;
 app.use(express.static(path.resolve(__dirname, './public')));
 
 
+if(!isDeveloping){
 // 接口转发
-const proxyHost = 'http://localhost:8089';
-app.use('/', proxy(proxyHost, {
-  filter: (req, res) => {
-    if(req.url.indexOf('/api/') === 0){
-      console.log(`api ====> ${proxyHost}`)
-    }
-    return req.url.indexOf('/api/') === 0;
-  },
-  // proxyReqPathResolver: (req, res) => {
-  //   return '/admin-api/V1' + req.url.replace('/api','');
-  // }
-}));
+  const proxyHost = 'http://localhost:8089';
+  app.use('/', proxy(proxyHost, {
+    filter: (req, res) => {
+      if(req.url.indexOf('/api/') === 0){
+        console.log(`api ====> ${proxyHost}`)
+      }
+      return req.url.indexOf('/api/') === 0;
+    },
+  }));
+}else {
+  // // 接口挂载
+  service(app);
+}
 
-// // 接口挂载
-// service(app);
 /**
  * 开发模式： 使用webpack hot middleware
  * 生产模式： 直接发送打包好的文件
