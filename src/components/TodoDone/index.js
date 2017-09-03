@@ -34,6 +34,9 @@ export default class TodoDone extends Component {
     doneListRefresh: React.PropTypes.bool.isRequired
   };
 
+  componentDidMount() {
+    this.getList()
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.doneListRefresh) {
@@ -41,9 +44,6 @@ export default class TodoDone extends Component {
     }
   }
 
-  componentDidUpdate(){
-    this.getList()
-  }
   // =============================获取列表数据=============================
   getList = () => {
     this.setState({
