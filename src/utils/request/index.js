@@ -21,7 +21,7 @@ axios.interceptors.request.use((config) => {
 // 响应拦截
 axios.interceptors.response.use((response) => {
   if (response.data.code === 401) {
-    window.location.href = '/account/login'
+    window.location.href = '/account/login?appId=0'
   }
   return response
 });
