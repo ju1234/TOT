@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import {Pagination, Spin, Timeline} from 'antd';
-import axios from 'axios';
+import axios from 'src/utils/request';
 import moment from 'moment';
 //================================================================
 //================================================================

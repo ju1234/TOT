@@ -4,7 +4,7 @@
 
 import React, {Component} from 'react';
 import {Button, Form, Input, message, Modal, Radio} from 'antd';
-import axios from 'axios';
+import axios from 'src/utils/request';
 //================================================================
 import API from 'root/API';
 import './todo-edit.less';

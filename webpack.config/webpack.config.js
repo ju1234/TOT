@@ -48,7 +48,8 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     modules: [path.resolve(__dirname,'../node_modules')],
     alias: {
-      root: path.resolve(__dirname,'../src')
+      root: path.resolve(__dirname,'../src'),
+      src: path.resolve(__dirname,'../src')
     }
   },
   module: {

@@ -3,7 +3,7 @@
  */
 
 import React, {Component} from 'react';
-import axios from 'axios';
+import axios from 'src/utils/request';
 import {message, Pagination, Spin} from 'antd';
 import lazyLoad from 'root/utils/lazyLoad';
 //========================================================

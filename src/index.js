@@ -10,6 +10,3 @@ import App from './components/Wrapper';
 import './utils/iSroll-polyfill';
 
 render(<App/>, document.getElementById('root'));
-
-
-
